@@ -28,12 +28,12 @@ import javax.swing.KeyStroke;
 public class Fale extends JFrame implements ActionListener{
     private JMenu menuPlik, menuNarzedzia, menuOpcje, menuPomoc;
     private JMenuBar menuBar;
-    private JMenuItem miAutor, mNew, mOtworz, mZapisz, mWyjscie, mOProgramie;
+    private JMenuItem miAutor, mNew, mOtworz, mZapisz, mZapiszWav, mWyjscie, mOProgramie;
     private JTextArea notatnik;//narazie jest jako notatnik ale tu ma być wykres
 
     public Fale(){
         setTitle("Składanie fal");
-        setSize(600,400);
+        setSize(1200,600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         setLayout(new BorderLayout());
         initializeGUI();
@@ -52,6 +52,9 @@ public class Fale extends JFrame implements ActionListener{
         mZapisz = new JMenuItem("Save");
         mZapisz.addActionListener(this);
 
+        mZapiszWav = new JMenuItem("Save to *wav");
+        mZapiszWav.addActionListener(this);
+        
         mWyjscie = new JMenuItem("Exit");
         mWyjscie.addActionListener(this);
         mWyjscie.setAccelerator(KeyStroke.getKeyStroke("ctrl X"));
@@ -61,6 +64,8 @@ public class Fale extends JFrame implements ActionListener{
         menuPlik.add(mNew);
         menuPlik.addSeparator();
         menuPlik.add(mZapisz);
+        menuPlik.addSeparator();
+        menuPlik.add(mZapiszWav);
         menuPlik.addSeparator();
         menuPlik.add(mWyjscie);
 
@@ -105,13 +110,13 @@ public class Fale extends JFrame implements ActionListener{
             } else if(odp == JOptionPane.NO_OPTION) {
                 JOptionPane.showMessageDialog(null, "Wiedziałam");
             } else if(odp == JOptionPane.CLOSED_OPTION) {
-                JOptionPane.showMessageDialog(null, "Tak nie robimy","Tytuł",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Tak nie robimy","",JOptionPane.WARNING_MESSAGE);
             }
             
         } 
         
         if(zrodlo == mOProgramie) {
-            JOptionPane.showMessageDialog(null, "Program demonstruje wykorzystanie JMenuBar i JMenu \n Wersja 1.0", "Tytuł", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Program demonstruje składanie fal dźwiękowych", "O programie", JOptionPane.WARNING_MESSAGE);
         }
       
     }
