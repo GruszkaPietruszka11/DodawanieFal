@@ -102,12 +102,6 @@ public class Fale extends JFrame implements ActionListener{
             int odp = JOptionPane.showConfirmDialog(null, "Czy na pewno chcesz wyjść z programu?","Pytanie", JOptionPane.YES_NO_OPTION);
             if(odp == JOptionPane.YES_OPTION) {
                 dispose();
-            } else if(odp == JOptionPane.NO_OPTION) {
-                JOptionPane.showMessageDialog(null, "Wiedziałam");
-            } else if(odp == JOptionPane.CLOSED_OPTION) {
-                JOptionPane.showMessageDialog(null, "Tak nie robimy","Tytuł",JOptionPane.WARNING_MESSAGE);
-            }
-            
         } 
         
         if(zrodlo == mOProgramie) {
