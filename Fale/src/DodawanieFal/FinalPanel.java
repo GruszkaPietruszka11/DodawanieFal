@@ -27,11 +27,14 @@ public class FinalPanel extends JPanel {
 		
 		settingsButton = new JButton("Settings");
 		this.add(settingsButton);
+		settingsButton.setToolTipText("Advanced graph settings");
 		
 		colorButton = new JButton("Color");
 		this.add(colorButton);
+		colorButton.setToolTipText("Change graph color");
 		
 		applyButton = new JButton("Apply");
 		this.add(applyButton);
+		applyButton.setToolTipText("Apply changes");
 	}
 }
