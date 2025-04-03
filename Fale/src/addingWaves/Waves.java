@@ -1,9 +1,11 @@
 package addingWaves;
 
-import java.awt.*;
+import java.awt.Dimension;
 import java.awt.event.*;
 
 import javax.swing.*;
+
+import net.miginfocom.swing.MigLayout;
 
 
 public class Waves extends JFrame implements ActionListener{
@@ -14,9 +16,9 @@ public class Waves extends JFrame implements ActionListener{
 
     public Waves(){
         setTitle("Adding waves");
-        setSize(1200,600);
+        setSize(1300,600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-        setLayout(new BorderLayout());
+        setLayout(new MigLayout("flowy"));
         initializeGUI();
     }
     void initializeGUI() {
@@ -59,26 +61,15 @@ public class Waves extends JFrame implements ActionListener{
         menuBar.add(menuFile);
         //menuBar.add(menuTools);
         menuBar.add(menuHelp);
+        SettingsPanel settings1Panel = new SettingsPanel();
+        settings1Panel.setMinimumSize(new Dimension(300,300));
+        this.add(new GraphPanel(), "w 50:2000, h 100:500");
+        this.add(new GraphPanel(), "w 50:2000, h 100:500");
+        this.add(new GraphPanel(),"wrap, w 50:2000, h 100:500");
+        this.add(new SettingsPanel(), "w 250:300");
+        this.add(new SettingsPanel(), "w 250:300");
+        this.add(new SettingsPanel(), "w 250:300");
         
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(3, 1, 10, 10));
-        this.add(panel,BorderLayout.EAST);
-        SettingsPanel spanel = new SettingsPanel();
-        panel.add(spanel);
-        SettingsPanel spanel2 = new SettingsPanel();
-        panel.add(spanel2);
-        FinalPanel fpanel = new FinalPanel();
-        panel.add(fpanel);
-        
-        JPanel panel2 = new JPanel();
-        panel2.setLayout(new GridLayout(3, 1, 10, 10));
-        this.add(panel2,BorderLayout.CENTER);
-        GraphPanel gpanel = new GraphPanel();
-        panel2.add(gpanel);
-        GraphPanel gpanel2 = new GraphPanel();
-        panel2.add(gpanel2);
-        GraphPanel gpanel3 = new GraphPanel();
-        panel2.add(gpanel3);
         }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -99,9 +90,3 @@ public class Waves extends JFrame implements ActionListener{
     }
  
 }
-
-
-//nazwy + tekst po angielsku
-//lepsze nazwy ogólnie
-//miglayout do okna
-//skrót (ewentualnie)

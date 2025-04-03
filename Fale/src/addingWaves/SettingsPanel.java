@@ -24,7 +24,7 @@ public class SettingsPanel extends JPanel {
 		this.add(amplitudeBox);
 		
 		settingsButton = new JButton("Settings");
-		this.add(settingsButton, "gap 10, wrap");
+		this.add(settingsButton, "gap 10, wrap 10:30");
 		settingsButton.setToolTipText("Advanced graph settings");
 		
 		frequency = new JLabel("f");
@@ -38,7 +38,7 @@ public class SettingsPanel extends JPanel {
 		this.add(frequencyBox);
 		
 		colorButton = new JButton("Color");
-		this.add(colorButton, "gap 10, wrap");
+		this.add(colorButton, "gap 10, wrap 10:30");
 		colorButton.setToolTipText("Change graph color");
 		
 		phaze = new JLabel("φ");
