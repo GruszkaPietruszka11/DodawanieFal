@@ -4,6 +4,10 @@ import javax.swing.*;
 
 import net.miginfocom.swing.MigLayout;
 
+/**Panel for changing graph settings for component waves (functions)
+ * Most of the functionality not implemented yet
+ */
+
 public class SettingsPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JLabel amplitude, frequency, phaze;
@@ -15,6 +19,7 @@ public class SettingsPanel extends JPanel {
 		
 		amplitude = new JLabel("A");
 		this.add(amplitude);
+		amplitude.setToolTipText("Amplitude");
 		
 		amplitudeText = new JTextField(5);
 		this.add(amplitudeText);
@@ -29,6 +34,7 @@ public class SettingsPanel extends JPanel {
 		
 		frequency = new JLabel("f");
 		this.add(frequency);
+		frequency.setToolTipText("Frequency");
 		
 		frequencyText = new JTextField(5);
 		this.add(frequencyText);
@@ -43,6 +49,7 @@ public class SettingsPanel extends JPanel {
 		
 		phaze = new JLabel("φ");
 		this.add(phaze);
+		phaze.setToolTipText("Phaze");
 		
 		phazeText = new JTextField(5);
 		this.add(phazeText);

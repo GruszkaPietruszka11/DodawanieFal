@@ -68,7 +68,7 @@ public class Waves extends JFrame implements ActionListener{
         this.add(new GraphPanel(),"wrap, w 50:2000, h 100:500");
         this.add(new SettingsPanel(), "w 250:300");
         this.add(new SettingsPanel(), "w 250:300");
-        this.add(new SettingsPanel(), "w 250:300");
+        this.add(new ResultSettingsPanel(), "w 250:300");
         
         }
     @Override

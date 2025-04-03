@@ -6,21 +6,25 @@ import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
 
-public class FinalPanel extends JPanel {
+/**Panel for changing graph settings for result wave (function)
+ * Most of the functionality not implemented yet
+ */
+
+public class ResultSettingsPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JCheckBox result, function1, function2;
 	private JButton settingsButton, colorButton, applyButton, playButton;
-	public FinalPanel() {
-		this.setLayout(new MigLayout("flowy, filly"));
+	public ResultSettingsPanel() {
+		this.setLayout(new MigLayout("flowy"));
 		
 		result = new JCheckBox("show result function");
-		this.add(result);
+		this.add(result, "gapbottom 5:20");
 		
 		function1 = new JCheckBox("show function 1");
-		this.add(function1);
+		this.add(function1, "gapbottom 5:20");
 		
 		function2 = new JCheckBox("show function 2");
-		this.add(function2);
+		this.add(function2, "gapbottom 5:20");
 		
 		playButton = new JButton("Play sound");
 		this.add(playButton, "wrap");

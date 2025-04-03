@@ -5,6 +5,9 @@ import java.awt.Color;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+/**Panel drawing a graph
+ * Most of the functionality not implemented yet
+ */
 
 public class GraphPanel extends JPanel {
 
