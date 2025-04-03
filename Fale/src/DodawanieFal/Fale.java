@@ -2,37 +2,22 @@ package DodawanieFal;
 
 import javax.swing.JMenu;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.util.Scanner;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import java.util.*;
 
 
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.JScrollPane;
-import javax.swing.KeyStroke;
+import javax.swing.*;
+
 
 public class Fale extends JFrame implements ActionListener{
-    private JMenu menuPlik, menuNarzedzia, menuOpcje, menuPomoc;
+    private JMenu menuFile, menuTools, menuOptions, menuHelp;
     private JMenuBar menuBar;
-    private JMenuItem miAutor, mNew, mOtworz, mZapisz, mZapiszWav, mWyjscie, mOProgramie;
-    private JTextArea notatnik;//narazie jest jako notatnik ale tu ma być wykres
+    private JMenuItem miAutor, mNew, mOpen, mSave, mSaveWav, mExit, mAbout;
 
     public Fale(){
-        setTitle("Składanie fal");
+        setTitle("Adding waves");
         setSize(1200,600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         setLayout(new BorderLayout());
@@ -40,44 +25,44 @@ public class Fale extends JFrame implements ActionListener{
     }
     void initializeGUI() {
     	menuBar = new JMenuBar();
-        menuPlik = new JMenu("File");
+        menuFile = new JMenu("File");
 
-        mOtworz = new JMenuItem("Open");
-        mOtworz.addActionListener(this);
+        mOpen = new JMenuItem("Open");
+        mOpen.addActionListener(this);
 
         menuBar = new JMenuBar();
         mNew = new JMenu("New");
         mNew.addActionListener(this);
 
-        mZapisz = new JMenuItem("Save");
-        mZapisz.addActionListener(this);
+        mSave = new JMenuItem("Save");
+        mSave.addActionListener(this);
 
-        mZapiszWav = new JMenuItem("Save to *wav");
-        mZapiszWav.addActionListener(this);
+        mSaveWav = new JMenuItem("Save to *wav");
+        mSaveWav.addActionListener(this);
         
-        mWyjscie = new JMenuItem("Exit");
-        mWyjscie.addActionListener(this);
-        mWyjscie.setAccelerator(KeyStroke.getKeyStroke("ctrl X"));
+        mExit = new JMenuItem("Exit");
+        mExit.addActionListener(this);
+        mExit.setAccelerator(KeyStroke.getKeyStroke("ctrl X"));
 
-        menuPlik.add(mOtworz);
-        menuPlik.addSeparator();
-        menuPlik.add(mNew);
-        menuPlik.addSeparator();
-        menuPlik.add(mZapisz);
-        menuPlik.addSeparator();
-        menuPlik.add(mZapiszWav);
-        menuPlik.addSeparator();
-        menuPlik.add(mWyjscie);
+        menuFile.add(mOpen);
+        menuFile.addSeparator();
+        menuFile.add(mNew);
+        menuFile.addSeparator();
+        menuFile.add(mSave);
+        menuFile.addSeparator();
+        menuFile.add(mSaveWav);
+        menuFile.addSeparator();
+        menuFile.add(mExit);
 
-        menuPomoc = new JMenu("Help");
-        mOProgramie = new JMenuItem("About program");
-        menuPomoc.add(mOProgramie);
-        mOProgramie.addActionListener(this);
+        menuHelp = new JMenu("Help");
+        mAbout = new JMenuItem("About program");
+        menuHelp.add(mAbout);
+        mAbout.addActionListener(this);
         
         setJMenuBar(menuBar);//to samo co add ale do dodania menuBar
-        menuBar.add(menuPlik);
-        //menuBar.add(menuNarzedzia);
-        menuBar.add(menuPomoc);
+        menuBar.add(menuFile);
+        //menuBar.add(menuTools);
+        menuBar.add(menuHelp);
         
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(3, 1, 10, 10));
@@ -103,22 +88,24 @@ public class Fale extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         Object zrodlo = e.getSource();
         
-        if (zrodlo == mWyjscie) {
+        if (zrodlo == mExit) {
             int odp = JOptionPane.showConfirmDialog(null, "Czy na pewno chcesz wyjść z programu?","Pytanie", JOptionPane.YES_NO_OPTION);
             if(odp == JOptionPane.YES_OPTION) {
                 dispose();
-            } else if(odp == JOptionPane.NO_OPTION) {
-                JOptionPane.showMessageDialog(null, "Wiedziałam");
-            } else if(odp == JOptionPane.CLOSED_OPTION) {
-                JOptionPane.showMessageDialog(null, "Tak nie robimy","",JOptionPane.WARNING_MESSAGE);
             }
             
         } 
         
-        if(zrodlo == mOProgramie) {
+        if(zrodlo == mAbout) {
             JOptionPane.showMessageDialog(null, "Program demonstruje składanie fal dźwiękowych", "O programie", JOptionPane.WARNING_MESSAGE);
         }
       
     }
  
 }
+
+
+//nazwy + tekst po angielsku
+//lepsze nazwy ogólnie
+//miglayout do okna
+//skrót (ewentualnie)
