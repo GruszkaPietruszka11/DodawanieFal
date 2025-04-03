@@ -1,4 +1,4 @@
-package DodawanieFal;
+package addingWaves;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -12,7 +12,7 @@ public class GraphPanel extends JPanel {
 	public GraphPanel() {
 		this.setBackground(Color.WHITE);
 		this.setLayout(new BorderLayout());
-		this.add(new JLabel("*wzór funkcji*"), BorderLayout.SOUTH);
+		this.add(new JLabel("*formula*"), BorderLayout.SOUTH);
 	}
 
 }

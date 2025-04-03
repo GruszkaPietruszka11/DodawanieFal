@@ -1,22 +1,18 @@
-package DodawanieFal;
-
-import javax.swing.JMenu;
+package addingWaves;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
-import java.util.*;
-
 
 import javax.swing.*;
 
 
-public class Fale extends JFrame implements ActionListener{
-    private JMenu menuFile, menuTools, menuOptions, menuHelp;
+public class Waves extends JFrame implements ActionListener{
+    private static final long serialVersionUID = 1L;
+	private JMenu menuFile, menuHelp;
     private JMenuBar menuBar;
-    private JMenuItem miAutor, mNew, mOpen, mSave, mSaveWav, mExit, mAbout;
+    private JMenuItem mNew, mOpen, mSave, mSaveWav, mExit, mAbout;
 
-    public Fale(){
+    public Waves(){
         setTitle("Adding waves");
         setSize(1200,600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
@@ -89,7 +85,7 @@ public class Fale extends JFrame implements ActionListener{
         Object zrodlo = e.getSource();
         
         if (zrodlo == mExit) {
-            int odp = JOptionPane.showConfirmDialog(null, "Czy na pewno chcesz wyjść z programu?","Pytanie", JOptionPane.YES_NO_OPTION);
+            int odp = JOptionPane.showConfirmDialog(null, "Are you sure?","Exiting the program", JOptionPane.YES_NO_OPTION);
             if(odp == JOptionPane.YES_OPTION) {
                 dispose();
             }
@@ -97,7 +93,7 @@ public class Fale extends JFrame implements ActionListener{
         } 
         
         if(zrodlo == mAbout) {
-            JOptionPane.showMessageDialog(null, "Program demonstruje składanie fal dźwiękowych", "O programie", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "The program demonstrates adding of sound waves.", "About", JOptionPane.WARNING_MESSAGE);
         }
       
     }

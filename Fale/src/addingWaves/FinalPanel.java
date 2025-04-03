@@ -1,4 +1,4 @@
-package DodawanieFal;
+package addingWaves;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
