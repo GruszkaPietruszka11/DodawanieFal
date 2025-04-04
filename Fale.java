@@ -25,7 +25,6 @@ public class Fale extends JFrame implements ActionListener{
     private JMenu menuPlik, menuNarzedzia, menuOpcje, menuPomoc;
     private JMenuBar menuBar;
     private JMenuItem miAutor, mNew, mOtworz, mZapisz, mWyjscie, mOProgramie;
-    private JTextArea notatnik;//narazie jest jako notatnik ale tu ma być wykres
 
     public Fale(){
         setTitle("Składanie fal");
@@ -48,7 +47,7 @@ public class Fale extends JFrame implements ActionListener{
 
         mWyjscie = new JMenuItem("Exit");
         mWyjscie.addActionListener(this);
-        mWyjscie.setAccelerator(KeyStroke.getKeyStroke("ctrl X"));
+        mWyjscie.setAccelerator(KeyStroke.getKeyStroke("ctrl X")); //skrót klawiszowy do wyjścia z programu
 
         menuPlik.add(mOtworz);
         menuPlik.addSeparator();
@@ -63,7 +62,7 @@ public class Fale extends JFrame implements ActionListener{
         menuPomoc.add(mOProgramie);
         mOProgramie.addActionListener(this);
         
-        setJMenuBar(menuBar);//to samo co add ale do dodania menuBar
+        setJMenuBar(menuBar);
         menuBar.add(menuPlik);
         //menuBar.add(menuNarzedzia);
         menuBar.add(menuPomoc);
@@ -80,12 +79,7 @@ public class Fale extends JFrame implements ActionListener{
             int odp = JOptionPane.showConfirmDialog(null, "Czy na pewno chcesz wyjść z programu?","Pytanie", JOptionPane.YES_NO_OPTION);
             if(odp == JOptionPane.YES_OPTION) {
                 dispose();
-            } else if(odp == JOptionPane.NO_OPTION) {
-                JOptionPane.showMessageDialog(null, "Wiedziałam");
-            } else if(odp == JOptionPane.CLOSED_OPTION) {
-                JOptionPane.showMessageDialog(null, "Tak nie robimy","Tytuł",JOptionPane.WARNING_MESSAGE);
             }
-            
         } 
         
         if(zrodlo == mOProgramie) {
