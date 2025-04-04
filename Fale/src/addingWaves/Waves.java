@@ -57,7 +57,7 @@ public class Waves extends JFrame implements ActionListener{
         menuHelp.add(mAbout);
         mAbout.addActionListener(this);
         
-        setJMenuBar(menuBar);//to samo co add ale do dodania menuBar
+        setJMenuBar(menuBar);
         menuBar.add(menuFile);
         //menuBar.add(menuTools);
         menuBar.add(menuHelp);
