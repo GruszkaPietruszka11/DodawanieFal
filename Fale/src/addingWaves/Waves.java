@@ -13,6 +13,7 @@ public class Waves extends JFrame implements ActionListener{
 	private JMenu menuFile, menuHelp;
     private JMenuBar menuBar;
     private JMenuItem mNew, mOpen, mSave, mSaveWav, mExit, mAbout;
+    private GraphPanel[] panels;
 
     public Waves(){
         setTitle("Adding waves");
@@ -63,13 +64,18 @@ public class Waves extends JFrame implements ActionListener{
         menuBar.add(menuHelp);
         SettingsPanel settings1Panel = new SettingsPanel();
         settings1Panel.setMinimumSize(new Dimension(300,300));
-        this.add(new GraphPanel(), "w 50:2000, h 100:500");
-        this.add(new GraphPanel(), "w 50:2000, h 100:500");
-        this.add(new GraphPanel(),"wrap, w 50:2000, h 100:500");
+        panels = new GraphPanel[3];
+        panels[0]=new GraphPanel();
+        panels[1]=new GraphPanel();
+        panels[2]=new GraphPanel();
+        panels[0].setChart(panels[0].calculateGraph());
+        this.add(panels[0], "w 50:2000, h 100:500");
+        this.add(panels[1], "w 50:2000, h 100:500");
+        this.add(panels[2],"wrap, w 50:2000, h 100:500");
         this.add(new SettingsPanel(), "w 250:300");
         this.add(new SettingsPanel(), "w 250:300");
         this.add(new ResultSettingsPanel(), "w 250:300");
-        
+        repaint();
         }
     @Override
     public void actionPerformed(ActionEvent e) {
