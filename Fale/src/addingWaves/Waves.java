@@ -73,17 +73,17 @@ public class Waves extends JFrame implements ActionListener{
         }
     @Override
     public void actionPerformed(ActionEvent e) {
-        Object zrodlo = e.getSource();
+        Object source = e.getSource();
         
-        if (zrodlo == mExit) {
-            int odp = JOptionPane.showConfirmDialog(null, "Are you sure?","Exiting the program", JOptionPane.YES_NO_OPTION);
-            if(odp == JOptionPane.YES_OPTION) {
+        if (source == mExit) {
+            int ans = JOptionPane.showConfirmDialog(null, "Are you sure?","Exiting the program", JOptionPane.YES_NO_OPTION);
+            if(ans == JOptionPane.YES_OPTION) {
                 dispose();
             }
             
         } 
         
-        if(zrodlo == mAbout) {
+        if(source == mAbout) {
             JOptionPane.showMessageDialog(null, "The program demonstrates adding of sound waves.", "About", JOptionPane.WARNING_MESSAGE);
         }
       
