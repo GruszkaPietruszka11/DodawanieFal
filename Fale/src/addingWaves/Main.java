@@ -7,4 +7,4 @@ public class Main {
         frame.setVisible(true);
     }
 }
-//czy działa?
+//jak działą to git
