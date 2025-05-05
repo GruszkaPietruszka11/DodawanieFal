@@ -1,8 +1,0 @@
-/**
- * 
- */
-/**
- * 
- */
-module robieJakHindusKaze_zarazUsune {
-}
