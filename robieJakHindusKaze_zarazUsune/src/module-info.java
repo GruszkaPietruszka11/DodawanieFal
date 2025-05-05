@@ -1,0 +1,8 @@
+/**
+ * 
+ */
+/**
+ * 
+ */
+module robieJakHindusKaze_zarazUsune {
+}
