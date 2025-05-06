@@ -7,4 +7,3 @@ public class Main {
         frame.setVisible(true);
     }
 }
-//jak działą to git

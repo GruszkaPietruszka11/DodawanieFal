@@ -1,6 +1,7 @@
 package addingWaves;
 
 import java.awt.Color;
+import java.awt.image.ImageObserver;
 
 import org.jfree.chart.*;
 import org.jfree.chart.plot.*;

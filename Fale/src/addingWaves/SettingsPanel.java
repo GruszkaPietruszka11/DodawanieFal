@@ -33,6 +33,7 @@ public class SettingsPanel extends JPanel {
 		this.add(amplitudeBox);
 		
 		settingsButton = new JButton("Settings");
+		// panel.doEditChartProperties(); <- pokazuje okienko z ustawieniami(do listenera)
 		this.add(settingsButton, "gap 10, wrap 10:30");
 		settingsButton.setToolTipText("Advanced graph settings");
 		
