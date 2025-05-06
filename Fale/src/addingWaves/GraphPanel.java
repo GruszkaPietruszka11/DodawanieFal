@@ -41,7 +41,6 @@ public class GraphPanel extends ChartPanel {
 		for (int ii=0; ii<numberOfPoints+1; ii++) {
 			double t=ii*3/freq/numberOfPoints;
 			series.add(t, amp*Math.sin(2*3.14*freq*t+phase));
-			System.out.println(t);
 		}
 		XYSeriesCollection dataset = new XYSeriesCollection();
 		dataset.addSeries(series);

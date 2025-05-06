@@ -14,7 +14,11 @@ public class SettingsPanel extends JPanel {
 	private JTextField amplitudeText, frequencyText, phazeText;
 	private JComboBox<String> amplitudeBox, frequencyBox, phazeBox;
 	private JButton settingsButton, colorButton, applyButton;
+	private GraphPanel panel;
+	
+	public GraphPanel getPanel() {return panel;}
 	public SettingsPanel() {
+		panel = new GraphPanel();
 		this.setLayout(new MigLayout());
 		
 		amplitude = new JLabel("A");

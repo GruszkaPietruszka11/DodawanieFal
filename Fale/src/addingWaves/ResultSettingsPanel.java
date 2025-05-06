@@ -14,7 +14,11 @@ public class ResultSettingsPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JCheckBox result, function1, function2;
 	private JButton settingsButton, colorButton, applyButton, playButton;
+	private GraphPanel panel;
+	
+	public GraphPanel getPanel() {return panel;}
 	public ResultSettingsPanel() {
+		panel = new GraphPanel();
 		this.setLayout(new MigLayout("flowy"));
 		
 		result = new JCheckBox("show result function");
