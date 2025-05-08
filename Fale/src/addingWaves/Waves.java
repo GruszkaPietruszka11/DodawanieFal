@@ -5,6 +5,9 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+
 import net.miginfocom.swing.MigLayout;
 
 
@@ -62,22 +65,57 @@ public class Waves extends JFrame implements ActionListener{
         setJMenuBar(menuBar);
         menuBar.add(menuFile);
         //menuBar.add(menuTools);
-        menuBar.add(menuHelp);
+        menuBar.add(menuHelp);    	//System.out.println(dataset.getSeriesCount());
         SettingsPanel settings1Panel = new SettingsPanel();
         settings1Panel.setMinimumSize(new Dimension(300,300));
         panels = new SettingsPanel[2];
         panels[0]=new SettingsPanel();
         panels[1]=new SettingsPanel();
         resultPanel = new ResultSettingsPanel();
-        panels[0].getPanel().setChart(panels[0].getPanel().calculateGraph());
+        panels[1].getPanel().setAmplitude(20);
+        panels[1].getPanel().setFrequency(4);
+        panels[1].getPanel().setPhase(3.14/2);
+    	panels[0].getPanel().setChart(panels[0].getPanel().makeChart(panels[0].getPanel().calculateSeries()));
+        panels[1].getPanel().setChart(panels[1].getPanel().makeChart(panels[1].getPanel().calculateSeries()));
         this.add(panels[0].getPanel(), "w 50:2000, h 100:500");
         this.add(panels[1].getPanel(), "w 50:2000, h 100:500");
         this.add(resultPanel.getPanel(),"wrap, w 50:2000, h 100:500");
         this.add(panels[0], "w 250:300");
         this.add(panels[1], "w 250:300");
         this.add(resultPanel, "w 250:300");
-        repaint();
+        mergeCharts();
         }
+    
+    private void mergeCharts() {
+    	XYSeriesCollection dataset = new XYSeriesCollection();
+    	for (SettingsPanel p : panels) {
+    		try {
+				dataset.addSeries(p.getPanel().getDataset().getSeries(0));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    	}
+    	dataset.addSeries(addSeries());
+		resultPanel.getPanel().setChart(resultPanel.getPanel().makeChart(dataset));
+    }
+    
+    private XYSeries addSeries() {
+    	XYSeries series = new XYSeries(""+Math.random());
+    	double freq=Math.min(panels[0].getPanel().getFrequency(), panels[1].getPanel().getFrequency());
+    	for (int ii=0; ii<GraphPanel.getNOP()+1; ii++) {
+			double t=ii*3/freq/GraphPanel.getNOP();
+			double x = 0;
+			for (SettingsPanel p : panels) {
+				x+=p.getPanel().getAmplitude()*Math.sin(2*3.14*p.getPanel().getFrequency()*t+p.getPanel().getPhase());
+			}
+			series.add(t, x);
+		}
+    	
+    	
+    	
+    	return series;
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
