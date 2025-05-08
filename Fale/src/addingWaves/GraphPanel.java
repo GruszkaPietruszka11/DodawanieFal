@@ -43,13 +43,6 @@ public class GraphPanel extends ChartPanel {
 		setColors();
 	}
 	
-	public JFreeChart makeChart(XYSeries[] series) {
-		for(XYSeries s : series)	dataset.addSeries(s);
-		chart = ChartFactory.createXYLineChart("","t[s]","x[Pa]",dataset, PlotOrientation.VERTICAL, false,false,false);
-		setColors();
-		return chart;
-	}
-	
 	public JFreeChart makeChart(XYSeriesCollection dataset) {
 		chart = ChartFactory.createXYLineChart("","t[s]","x[Pa]",dataset, PlotOrientation.VERTICAL, false,false,false);
 		setColors();
@@ -60,7 +53,7 @@ public class GraphPanel extends ChartPanel {
 		XYSeries series = new XYSeries(""+Math.random());
 		for (int ii=0; ii<numberOfPoints+1; ii++) {
 			double t=ii*3/freq/numberOfPoints;
-			series.add(t, amp*Math.sin(2*3.14*freq*t+phase));
+			series.add(t, amp*Math.sin(2*Math.PI*freq*t+phase));
 		}
 		dataset.addSeries(series);
 		return dataset;

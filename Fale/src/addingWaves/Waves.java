@@ -65,7 +65,7 @@ public class Waves extends JFrame implements ActionListener{
         setJMenuBar(menuBar);
         menuBar.add(menuFile);
         //menuBar.add(menuTools);
-        menuBar.add(menuHelp);    	//System.out.println(dataset.getSeriesCount());
+        menuBar.add(menuHelp);
         SettingsPanel settings1Panel = new SettingsPanel();
         settings1Panel.setMinimumSize(new Dimension(300,300));
         panels = new SettingsPanel[2];
@@ -74,7 +74,7 @@ public class Waves extends JFrame implements ActionListener{
         resultPanel = new ResultSettingsPanel();
         panels[1].getPanel().setAmplitude(20);
         panels[1].getPanel().setFrequency(4);
-        panels[1].getPanel().setPhase(3.14/2);
+        panels[1].getPanel().setPhase(Math.PI/2);
     	panels[0].getPanel().setChart(panels[0].getPanel().makeChart(panels[0].getPanel().calculateSeries()));
         panels[1].getPanel().setChart(panels[1].getPanel().makeChart(panels[1].getPanel().calculateSeries()));
         this.add(panels[0].getPanel(), "w 50:2000, h 100:500");
@@ -88,6 +88,7 @@ public class Waves extends JFrame implements ActionListener{
     
     private void mergeCharts() {
     	XYSeriesCollection dataset = new XYSeriesCollection();
+    	dataset.addSeries(addSeries());
     	for (SettingsPanel p : panels) {
     		try {
 				dataset.addSeries(p.getPanel().getDataset().getSeries(0));
@@ -95,8 +96,9 @@ public class Waves extends JFrame implements ActionListener{
 				e.printStackTrace();
 			}
     	}
-    	dataset.addSeries(addSeries());
 		resultPanel.getPanel().setChart(resultPanel.getPanel().makeChart(dataset));
+		resultPanel.getPanel().getChart().getXYPlot().getRenderer().setSeriesVisible(1,false);
+		resultPanel.getPanel().getChart().getXYPlot().getRenderer().setSeriesVisible(2,false);
     }
     
     private XYSeries addSeries() {
@@ -106,13 +108,10 @@ public class Waves extends JFrame implements ActionListener{
 			double t=ii*3/freq/GraphPanel.getNOP();
 			double x = 0;
 			for (SettingsPanel p : panels) {
-				x+=p.getPanel().getAmplitude()*Math.sin(2*3.14*p.getPanel().getFrequency()*t+p.getPanel().getPhase());
+				x+=p.getPanel().getAmplitude()*Math.sin(2*Math.PI*p.getPanel().getFrequency()*t+p.getPanel().getPhase());
 			}
 			series.add(t, x);
 		}
-    	
-    	
-    	
     	return series;
     }
     
@@ -125,7 +124,6 @@ public class Waves extends JFrame implements ActionListener{
             if(ans == JOptionPane.YES_OPTION) {
                 dispose();
             }
-            
         } 
         
         if(source == mAbout) {
