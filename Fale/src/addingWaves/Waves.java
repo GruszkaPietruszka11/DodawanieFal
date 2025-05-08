@@ -1,6 +1,5 @@
 package addingWaves;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.*;
 
@@ -16,7 +15,7 @@ public class Waves extends JFrame implements ActionListener{
     private static final long serialVersionUID = 1L;
 	private JMenu menuFile, menuHelp;
     private JMenuBar menuBar;
-    private JMenuItem mNew, mOpen, mSave, mSaveWav, mExit, mAbout;
+    private JMenuItem mOpen, mSave, mSaveWav, mExit, mAbout;
     private SettingsPanel[] panels;
     private ResultSettingsPanel resultPanel;
 
@@ -35,8 +34,6 @@ public class Waves extends JFrame implements ActionListener{
         mOpen.addActionListener(this);
 
         menuBar = new JMenuBar();
-        mNew = new JMenu("New");
-        mNew.addActionListener(this);
 
         mSave = new JMenuItem("Save");
         mSave.addActionListener(this);
@@ -49,8 +46,6 @@ public class Waves extends JFrame implements ActionListener{
         mExit.setAccelerator(KeyStroke.getKeyStroke("ctrl X"));
 
         menuFile.add(mOpen);
-        menuFile.addSeparator();
-        menuFile.add(mNew);
         menuFile.addSeparator();
         menuFile.add(mSave);
         menuFile.addSeparator();
@@ -73,13 +68,11 @@ public class Waves extends JFrame implements ActionListener{
         panels[0]=new SettingsPanel();
         panels[1]=new SettingsPanel();
         resultPanel = new ResultSettingsPanel();
-        panels[0].getPanel().setStroke(Color.magenta);
         panels[1].getPanel().setAmplitude(20);
         panels[1].getPanel().setFrequency(4);
         panels[1].getPanel().setPhase(Math.PI/2);
     	panels[0].getPanel().setChart(panels[0].getPanel().makeChart(panels[0].getPanel().calculateSeries()));
         panels[1].getPanel().setChart(panels[1].getPanel().makeChart(panels[1].getPanel().calculateSeries()));
-        resultPanel.getPanel().setStroke(Color.black);
         this.add(panels[0].getPanel(), "w 50:2000, h 100:500");
         this.add(panels[1].getPanel(), "w 50:2000, h 100:500");
         this.add(resultPanel.getPanel(),"wrap, w 50:2000, h 100:500");
@@ -134,7 +127,9 @@ public class Waves extends JFrame implements ActionListener{
         if(source == mAbout) {
             JOptionPane.showMessageDialog(null, "The program demonstrates adding of sound waves.", "About", JOptionPane.WARNING_MESSAGE);
         }
-      
+    }
+    public void save() {
+    	
     }
  
 }

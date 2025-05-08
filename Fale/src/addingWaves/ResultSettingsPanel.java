@@ -1,10 +1,12 @@
 package addingWaves;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JColorChooser;
 import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
@@ -16,12 +18,13 @@ import net.miginfocom.swing.MigLayout;
 public class ResultSettingsPanel extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	private JCheckBox result, function1, function2;
-	private JButton settingsButton, colorButton, applyButton, playButton;
+	private JButton settingsButton, colorButton, playButton;
 	private GraphPanel panel;
 	
 	public GraphPanel getPanel() {return panel;}
 	public ResultSettingsPanel() {
 		panel = new GraphPanel();
+		panel.setStroke(Color.magenta);
 		this.setLayout(new MigLayout("flowy"));
 		
 		result = new JCheckBox("show result function");
@@ -45,19 +48,23 @@ public class ResultSettingsPanel extends JPanel implements ActionListener{
 		this.add(playButton, "wrap");
 		
 		settingsButton = new JButton("Settings");
+		settingsButton.addActionListener(e->panel.doEditChartProperties());
 		this.add(settingsButton);
 		settingsButton.setToolTipText("Advanced graph settings");
 		
 		colorButton = new JButton();
 		colorButton.setBackground(panel.getStroke());
+		colorButton.addActionListener(e->setColor());
 		this.add(colorButton, "h 30, wrap 10:30");
 		colorButton.setToolTipText("Change graph color");
-		
-		applyButton = new JButton("Apply");
-		this.add(applyButton);
-		applyButton.setToolTipText("Apply changes");
-		
 	}
+	
+	void setColor() {
+		Color color = JColorChooser.showDialog(this, "Choose a color", panel.getStroke());
+		panel.setStroke(color);
+		colorButton.setBackground(color);
+	}
+	
 	public void actionPerformed(ActionEvent e) {
 		if (((JCheckBox)e.getSource()).isSelected())
 			panel.getChart().getXYPlot().getRenderer().setSeriesVisible(Integer.parseUnsignedInt(e.getActionCommand()), true);

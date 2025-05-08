@@ -31,7 +31,7 @@ public class GraphPanel extends ChartPanel {
 	public void setBack(Color c) {backColor=c;}
 	public void setPlot(Color c) {plotColor=c;}
 	public void setGrid(Color c) {gridColor=c;}
-	public void setStroke(Color c) {strokeColor=c;}
+	public void setStroke(Color c) {strokeColor=c; chart.getXYPlot().getRenderer().setSeriesPaint(0, c);}
 	public Color getStroke() {return strokeColor;}
 	
 	private XYSeriesCollection dataset = new XYSeriesCollection();
@@ -56,6 +56,7 @@ public class GraphPanel extends ChartPanel {
 			double t=ii*3/freq/numberOfPoints;
 			series.add(t, amp*Math.sin(2*Math.PI*freq*t+phase));
 		}
+		dataset = new XYSeriesCollection();
 		dataset.addSeries(series);
 		return dataset;
 	}
