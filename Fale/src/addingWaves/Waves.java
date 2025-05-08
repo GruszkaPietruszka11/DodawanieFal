@@ -2,7 +2,13 @@ package addingWaves;
 
 import java.awt.Dimension;
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import org.jfree.data.xy.XYSeries;
@@ -31,11 +37,13 @@ public class Waves extends JFrame implements ActionListener{
         menuFile = new JMenu("File");
 
         mOpen = new JMenuItem("Open");
+        mOpen.addActionListener(e->open());
         mOpen.addActionListener(this);
 
         menuBar = new JMenuBar();
 
         mSave = new JMenuItem("Save");
+        mSave.addActionListener(e->save());
         mSave.addActionListener(this);
 
         mSaveWav = new JMenuItem("Save to *wav");
@@ -68,9 +76,6 @@ public class Waves extends JFrame implements ActionListener{
         panels[0]=new SettingsPanel();
         panels[1]=new SettingsPanel();
         resultPanel = new ResultSettingsPanel();
-        panels[1].getPanel().setAmplitude(20);
-        panels[1].getPanel().setFrequency(4);
-        panels[1].getPanel().setPhase(Math.PI/2);
     	panels[0].getPanel().setChart(panels[0].getPanel().makeChart(panels[0].getPanel().calculateSeries()));
         panels[1].getPanel().setChart(panels[1].getPanel().makeChart(panels[1].getPanel().calculateSeries()));
         this.add(panels[0].getPanel(), "w 50:2000, h 100:500");
@@ -129,7 +134,42 @@ public class Waves extends JFrame implements ActionListener{
         }
     }
     public void save() {
-    	
+    	File outputFile;
+    	JFileChooser fileChooser = new JFileChooser();
+        if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+            outputFile = fileChooser.getSelectedFile();
+            try {
+				PrintWriter writer = new PrintWriter(outputFile);
+				writer.print(panels[0].getData()+"\n"+panels[1].getData());
+				writer.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+        }
+    }
+    
+    public void open() {
+    	File inputFile;
+    	JFileChooser fileChooser = new JFileChooser();
+        if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+            inputFile = fileChooser.getSelectedFile();
+            try {
+				Scanner scan = new Scanner(inputFile);
+				panels[0].getPanel().setAmplitude(Double.valueOf(scan.next()));
+				panels[0].getPanel().setFrequency(Double.valueOf(scan.next()));
+				panels[0].getPanel().setPhase(Double.valueOf(scan.next()));
+				panels[1].getPanel().setAmplitude(Double.valueOf(scan.next()));
+				panels[1].getPanel().setFrequency(Double.valueOf(scan.next()));
+				panels[1].getPanel().setPhase(Double.valueOf(scan.next()));
+				panels[0].getPanel().setChart(panels[0].getPanel().makeChart(panels[0].getPanel().calculateSeries()));
+				panels[1].getPanel().setChart(panels[1].getPanel().makeChart(panels[1].getPanel().calculateSeries()));
+				resultPanel.getPanel().setChart(resultPanel.getPanel().makeChart(resultPanel.getPanel().calculateSeries()));
+				panels[0].updateBoxes();
+				panels[1].updateBoxes();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+        }
     }
  
 }

@@ -104,10 +104,19 @@ public class SettingsPanel extends JPanel {
 		panel.setChart(panel.makeChart(panel.calculateSeries()));
 	}
 	
-	void setColor() {
+	public void updateBoxes() {
+		amplitudeText.setText(panel.getAmplitude()+"");
+		frequencyText.setText(panel.getFrequency()+"");
+		phaseText.setText(panel.getPhase()+"");
+	}
+	
+	public void setColor() {
 		Color color = JColorChooser.showDialog(this, "Choose a color", panel.getStroke());
 		panel.setStroke(color);
 		colorButton.setBackground(color);
+	}
+	public String getData() {
+		return panel.getAmplitude()+"\t"+panel.getFrequency()+"\t"+panel.getPhase();
 	}
 
 }
