@@ -2,13 +2,9 @@ package addingWaves;
 
 import java.awt.Dimension;
 import java.awt.event.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Scanner;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import org.jfree.data.xy.XYSeries;
@@ -51,7 +47,7 @@ public class Waves extends JFrame implements ActionListener{
         
         mExit = new JMenuItem("Exit");
         mExit.addActionListener(this);
-        mExit.setAccelerator(KeyStroke.getKeyStroke("ctrl X"));
+        //mExit.setAccelerator(KeyStroke.getKeyStroke("Ctrl + x"));
 
         menuFile.add(mOpen);
         menuFile.addSeparator();
@@ -68,7 +64,6 @@ public class Waves extends JFrame implements ActionListener{
         
         setJMenuBar(menuBar);
         menuBar.add(menuFile);
-        //menuBar.add(menuTools);
         menuBar.add(menuHelp);
         SettingsPanel settings1Panel = new SettingsPanel();
         settings1Panel.setMinimumSize(new Dimension(300,300));
@@ -155,17 +150,15 @@ public class Waves extends JFrame implements ActionListener{
             inputFile = fileChooser.getSelectedFile();
             try {
 				Scanner scan = new Scanner(inputFile);
-				panels[0].getPanel().setAmplitude(Double.valueOf(scan.next()));
-				panels[0].getPanel().setFrequency(Double.valueOf(scan.next()));
-				panels[0].getPanel().setPhase(Double.valueOf(scan.next()));
-				panels[1].getPanel().setAmplitude(Double.valueOf(scan.next()));
-				panels[1].getPanel().setFrequency(Double.valueOf(scan.next()));
-				panels[1].getPanel().setPhase(Double.valueOf(scan.next()));
-				panels[0].getPanel().setChart(panels[0].getPanel().makeChart(panels[0].getPanel().calculateSeries()));
-				panels[1].getPanel().setChart(panels[1].getPanel().makeChart(panels[1].getPanel().calculateSeries()));
-				resultPanel.getPanel().setChart(resultPanel.getPanel().makeChart(resultPanel.getPanel().calculateSeries()));
-				panels[0].updateBoxes();
-				panels[1].updateBoxes();
+				for (SettingsPanel p : panels) {
+					p.getPanel().setAmplitude(Double.valueOf(scan.next()));
+					p.getPanel().setFrequency(Double.valueOf(scan.next()));
+					p.getPanel().setPhase(Double.valueOf(scan.next()));
+					p.getPanel().setChart(p.getPanel().makeChart(p.getPanel().calculateSeries()));
+					p.updateBoxes();
+				}
+				scan.close();
+				mergeCharts();
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
