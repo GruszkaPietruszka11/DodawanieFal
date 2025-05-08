@@ -48,8 +48,9 @@ public class ResultSettingsPanel extends JPanel implements ActionListener{
 		this.add(settingsButton);
 		settingsButton.setToolTipText("Advanced graph settings");
 		
-		colorButton = new JButton("Color");
-		this.add(colorButton);
+		colorButton = new JButton();
+		colorButton.setBackground(panel.getStroke());
+		this.add(colorButton, "h 30, wrap 10:30");
 		colorButton.setToolTipText("Change graph color");
 		
 		applyButton = new JButton("Apply");

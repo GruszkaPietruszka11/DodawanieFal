@@ -48,8 +48,9 @@ public class SettingsPanel extends JPanel {
 		frequencyBox = new JComboBox<String>(frequencyUnits);
 		this.add(frequencyBox);
 		
-		colorButton = new JButton("Color");
-		this.add(colorButton, "gap 10, wrap 10:30");
+		colorButton = new JButton();
+		colorButton.setBackground(panel.getStroke());
+		this.add(colorButton, "gap 10, h 30, wrap 10:30");
 		colorButton.setToolTipText("Change graph color");
 		
 		phaze = new JLabel("φ");

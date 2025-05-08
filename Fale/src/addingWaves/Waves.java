@@ -1,5 +1,6 @@
 package addingWaves;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.*;
 
@@ -72,11 +73,13 @@ public class Waves extends JFrame implements ActionListener{
         panels[0]=new SettingsPanel();
         panels[1]=new SettingsPanel();
         resultPanel = new ResultSettingsPanel();
+        panels[0].getPanel().setStroke(Color.magenta);
         panels[1].getPanel().setAmplitude(20);
         panels[1].getPanel().setFrequency(4);
         panels[1].getPanel().setPhase(Math.PI/2);
     	panels[0].getPanel().setChart(panels[0].getPanel().makeChart(panels[0].getPanel().calculateSeries()));
         panels[1].getPanel().setChart(panels[1].getPanel().makeChart(panels[1].getPanel().calculateSeries()));
+        resultPanel.getPanel().setStroke(Color.black);
         this.add(panels[0].getPanel(), "w 50:2000, h 100:500");
         this.add(panels[1].getPanel(), "w 50:2000, h 100:500");
         this.add(resultPanel.getPanel(),"wrap, w 50:2000, h 100:500");
@@ -97,6 +100,8 @@ public class Waves extends JFrame implements ActionListener{
 			}
     	}
 		resultPanel.getPanel().setChart(resultPanel.getPanel().makeChart(dataset));
+		resultPanel.getPanel().getChart().getXYPlot().getRenderer().setSeriesPaint(1,panels[0].getPanel().getStroke());
+		resultPanel.getPanel().getChart().getXYPlot().getRenderer().setSeriesPaint(2,panels[1].getPanel().getStroke());
 		resultPanel.getPanel().getChart().getXYPlot().getRenderer().setSeriesVisible(1,false);
 		resultPanel.getPanel().getChart().getXYPlot().getRenderer().setSeriesVisible(2,false);
     }

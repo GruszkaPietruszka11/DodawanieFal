@@ -32,6 +32,7 @@ public class GraphPanel extends ChartPanel {
 	public void setPlot(Color c) {plotColor=c;}
 	public void setGrid(Color c) {gridColor=c;}
 	public void setStroke(Color c) {strokeColor=c;}
+	public Color getStroke() {return strokeColor;}
 	
 	private XYSeriesCollection dataset = new XYSeriesCollection();
 	public XYSeriesCollection getDataset() {return dataset;};
